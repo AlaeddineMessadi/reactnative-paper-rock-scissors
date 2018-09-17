@@ -27,8 +27,8 @@ const weapon = props => {
     <View style={ styles.weapon }>
       <View style={ styles.image }>
         <SvgUri
-          width="150"
-          height="150"
+          width="180"
+          height="180"
           source={ choseWeapon(props.type) }
         />
       </View>

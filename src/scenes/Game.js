@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import Header from '../components/Header';
 import Player from "../components/Player";
+import Controls from '../components/Controls';
+
 // import History from "../components/History/History";
 
 import Aux from '../hoc/Aux';
@@ -16,7 +18,7 @@ export default class Game extends Component {
       <Aux>
         <Header />
         <Text style={ styles.tie }>Tie!</Text>
-        <View style={ styles.container }>
+        <ScrollView contentContainerStyle={ styles.container }>
           <Player
             label="Human"
             weapon="paper"
@@ -29,7 +31,8 @@ export default class Game extends Component {
             score="10"
             loading="false"
           />
-        </View>
+        </ScrollView>
+        <Controls />
       </Aux>
     );
   }

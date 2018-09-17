@@ -9,7 +9,7 @@ const player = ({ id, label, loading, weapon, score, order }) => {
   return (
     <View style={ styles.container }>
       <Text style={ styles.label }>{ label }</Text>
-      <Text style={ styles.score }>{ score }</Text>
+      <Text style={ styles.score }>{ score }k</Text>
       <View>
         <Weapon
           type={ weapon }
