@@ -1,21 +1,25 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
+
 import Button from "./Button";
 
 import { weaponKeys } from "../constants/WEAPONS";
-
+import * as actions from '../store/actions';
 
 const controls = props => {
-  const mode = "vs";
-  onPress = () => alert('pressed control');
+  onPress = () => {
+    const weapon1 = null;
+    const weapon2 = null;
+  };
 
   return (
     <View style={ styles.container }>
-      { mode === "vs" ? weaponKeys.map((weapon, index) => (
+      { props.mode === "vs" ? weaponKeys.map((weapon, index) => (
         <View key={ index } style={ styles.element }>
           <Button
             styleName="flat"
-            onPress={ onPress }
+            onPress={ () => props.pickWeapon(weapon) }
             text={ weapon }
           />
         </View>
@@ -24,7 +28,7 @@ const controls = props => {
           <View style={ styles.element }>
             <Button
               styleName="flat"
-              onPress={ onPress }
+              onPress={ () => props.pickRandomWeapon() }
               text="Play"
             />
           </View>
@@ -32,6 +36,13 @@ const controls = props => {
     </View>
   );
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    pickWeapon: (weapon) => dispatch({ type: actions.PICK_WEAPON, weapon }),
+    pickRandomWeapon: () => dispatch({ type: actions.PICK_RANDOM_WEAPON })
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -47,4 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default controls;
+export default connect(null, mapDispatchToProps)(controls);

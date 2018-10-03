@@ -6,17 +6,16 @@ import Button from "./Button";
 // import { modes } from "../../constants/MODES";
 
 const header = props => {
-  onPress = () => alert('pressed');
   return (
     <View style={ styles.header }>
       <Text style={ styles.title }>Rock - Paper - Scissors</Text>
       <View style={ styles.mode }>
         <Button
           styleName="flat"
-          onPress={ onPress }
-          text="Switch Mode"
+          onPress={ () => props.switchMode() }
+          text="Switch"
         />
-        <Text style={ styles.subTitle }>THis is the mode toggler</Text>
+        <Text style={ styles.subTitle }>{ props.mode }</Text>
       </View>
     </View>
   );

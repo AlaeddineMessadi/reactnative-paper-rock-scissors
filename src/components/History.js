@@ -1,55 +1,91 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
-
-import classes from './History.css';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 const history = (props) => {
-  const label1 = props.game.player1.label;
-  const label2 = props.game.player2.label;
-  const records = props.game.history.records;
+  const label1 = props.player1.label;
+  const label2 = props.player2.label;
+  const records = props.history.records;
+
+
 
   return (
-    <aside className={ classes.history }>
-      <table>
-        <thead>
-          <tr>
-            <th>{ label1 }</th>
-            <th className={ classes.border }></th>
-            <th>{ label2 }</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            records.map((record, index) => {
-              let tie, p1Status, p2Status;
-              switch (record.winner) {
-                case label1:
-                  p1Status = classes.win;
-                  p2Status = classes.lose;
-                  break;
-                case label2:
-                  p2Status = classes.win;
-                  p1Status = classes.lose;
-                  break;
-                default:
-                  tie = classes.tie;
-                  break;
-              }
+    <View style={ styles.history }>
+      <View style={ styles.row }>
+        <Text style={ [styles.label, styles.bold] }>{ label1 }</Text>
+        <View style={ styles.border }></View>
+        <Text style={ [styles.label, styles.bold] }>{ label2 }</Text>
+      </View>
+      <View style={ styles.body }>
+        {
+          records.map((record, index) => {
+            let tie, p1Status, p2Status;
+            switch (record.winner) {
+              case label1:
+                p1Status = styles.win;
+                p2Status = styles.lose;
+                break;
+              case label2:
+                p2Status = styles.win;
+                p1Status = styles.lose;
+                break;
+              default:
+                tie = styles.tie;
+                break;
+            }
 
-              return (
-                <tr className={ tie } key={ index }>
-                  <td className={ p1Status }>{ record.player1.weapon }</td>
-                  <td className={ classes.border }></td>
-                  <td className={ p2Status }>{ record.player2.weapon }</td>
-                </tr>
-              )
-            })
-          }
+            return (
+              <View style={ [styles.row, tie] } key={ index }>
+                <Text style={ [styles.label, p1Status] }>{ record.player1.weapon }</Text>
+                <View style={ styles.border }></View>
+                <Text style={ [styles.label, p2Status] }>{ record.player2.weapon }</Text>
+              </View>
+            )
+          })
+        }
 
-        </tbody>
-      </table>
-    </aside>
+      </View>
+    </View>
   )
 };
+
+const styles = StyleSheet.create({
+  history: {
+    display: "flex",
+    flexDirection: 'column',
+  },
+  row: {
+    display: "flex",
+    flexDirection: 'row',
+    backgroundColor: '#95A5A6',
+    justifyContent: 'center',
+    height: 30,
+    borderBottomWidth: 5,
+    borderBottomColor: '#ffffff'
+  },
+  border: {
+    width: 2,
+    backgroundColor: '#ffffff'
+  },
+  label: {
+    flex: 1,
+    alignSelf: 'center',
+    textAlign: 'center',
+    padding: 5,
+    color: '#ffffff',
+    fontSize: 15,
+  },
+  bold: {
+    fontWeight: 'bold'
+  },
+  win: {
+    backgroundColor: '#2e99b0'
+  },
+  lose: {
+    backgroundColor: '#ff2e4c'
+  },
+  tie: {
+    backgroundColor: '#1e1548'
+  }
+});
 
 export default history;
