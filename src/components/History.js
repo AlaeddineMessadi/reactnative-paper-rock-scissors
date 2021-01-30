@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 const history = (props) => {
   const label1 = props.player1.label;
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   history: {
     display: "flex",
     flexDirection: 'column',
+    marginBottom: 50
   },
   row: {
     display: "flex",

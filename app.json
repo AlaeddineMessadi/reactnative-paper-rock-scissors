@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PRS",
-    "slug": "PRS",
+    "name": "Paper Rock Scissors",
+    "slug": "paper-rock-scissors",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

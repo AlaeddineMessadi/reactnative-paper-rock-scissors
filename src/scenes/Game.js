@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
@@ -13,7 +13,6 @@ import Aux from '../hoc/Aux';
 import { modes } from '../constants/MODES'
 import * as actions from '../store/actions';
 
-// import classes from "./Game.css";
 
 class Game extends Component {
   render() {
@@ -23,7 +22,6 @@ class Game extends Component {
         <Header mode={ modes[mode].label.toUpperCase() }
           switchMode={ switchMode } />
         <ScrollView contentContainerStyle={ styles.container }>
-        { winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
           <View style={ styles.gameContainer }>
             <Player
               label={ p1.label }
@@ -37,8 +35,8 @@ class Game extends Component {
               score={ p2.score }
               loading={ loading }
             />
-            
           </View>
+            { winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
           <History
             player1={ { label: p1.label } }
             player2={ { label: p2.label } }
@@ -80,6 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     top: 0,
+    height: 50,
     width: "100%",
     padding: 5,
   },
