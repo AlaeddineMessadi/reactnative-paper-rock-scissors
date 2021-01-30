@@ -45,16 +45,16 @@ const reducer = (state = initState, action) => {
       };
 
     case actions.PICK_WEAPON:
-      const weapon1 = action.weapon || getRandomWeapon();
-      const weapon2 = getRandomWeapon();
-      const winner = chooseWinner(weapon1, weapon2, state.player1, state.player2);
-      const score1 = state.player1.score;
-      const score2 = state.player2.score;
+      let weapon1 = action.weapon || getRandomWeapon();
+      let weapon2 = getRandomWeapon();
+      let winner = chooseWinner(weapon1, weapon2, state.player1, state.player2);
+      let score1 = state.player1.score;
+      let score2 = state.player2.score;
       // calculate score
       if (winner !== 'tie') {
         (winner === state.player1.label) ? score1++ : score2++;
       }
-      const history = state.history;
+      let history = state.history;
       history.records.unshift({ player1: state.player1, player2: state.player2, winner })
       return {
         ...state,

@@ -12,24 +12,18 @@ import Aux from '../hoc/Aux';
 import { modes } from '../constants/MODES'
 import * as actions from '../store/actions';
 
-
-import Reactotron from "reactotron-react-native";
-
 // import classes from "./Game.css";
 
 class Game extends Component {
   render() {
-
-    Reactotron.log('Hello There');
-    
     // const tie = this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null;
     const tie = <Text style={ styles.tie }>Tie!</Text>;
     return (
       <Aux>
         <Header mode={ modes[this.props.mode].label.toUpperCase() }
           switchMode={ this.props.switchMode } />
-
         <ScrollView contentContainerStyle={ styles.container }>
+        { this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
           <View style={ styles.gameContainer }>
             <Player
               label={ this.props.p1.label }
@@ -43,7 +37,7 @@ class Game extends Component {
               score={ this.props.p2.score }
               loading={ this.props.loading }
             />
-            { this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
+            
           </View>
           <History
             player1={ { label: this.props.p1.label } }
@@ -85,17 +79,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontWeight: "bold",
-    // width: 300,
-    position: 'absolute',
-    left: (Dimensions.get('window').width / 2) - 100,
-    padding: 100,
-    // top: "50%",
-    // left: 20,
-    // justifyContent: 'center',
-    // alignSelf: 'center',
+    top: 0,
+    width: "100%",
+    padding: 5,
   },
   container: {
     display: "flex",
+    position: "relative",
     flexDirection: 'column',
     backgroundColor: '#fcd77f',
     justifyContent: 'center',
