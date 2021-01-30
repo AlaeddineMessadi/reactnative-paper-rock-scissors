@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import reducer from './src/store/reducer';
 import Game from './src/scenes/Game';
 
+// eslint-disable-next-line no-undef
 if(__DEV__) {
   import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
 }

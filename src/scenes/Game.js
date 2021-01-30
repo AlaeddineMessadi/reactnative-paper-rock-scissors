@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
@@ -16,33 +17,32 @@ import * as actions from '../store/actions';
 
 class Game extends Component {
   render() {
-    // const tie = this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null;
-    const tie = <Text style={ styles.tie }>Tie!</Text>;
+    const { mode, switchMode, winner, p1, p2, history , loading} = this.props;
     return (
       <Aux>
-        <Header mode={ modes[this.props.mode].label.toUpperCase() }
-          switchMode={ this.props.switchMode } />
+        <Header mode={ modes[mode].label.toUpperCase() }
+          switchMode={ switchMode } />
         <ScrollView contentContainerStyle={ styles.container }>
-        { this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
+        { winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null }
           <View style={ styles.gameContainer }>
             <Player
-              label={ this.props.p1.label }
-              weapon={ this.props.p1.weapon }
-              score={ this.props.p1.score }
-              loading={ this.props.loading }
+              label={ p1.label }
+              weapon={ p1.weapon }
+              score={ p1.score }
+              loading={ loading }
             />
             <Player
-              label={ this.props.p2.label }
-              weapon={ this.props.p2.weapon }
-              score={ this.props.p2.score }
-              loading={ this.props.loading }
+              label={ p2.label }
+              weapon={ p2.weapon }
+              score={ p2.score }
+              loading={ loading }
             />
             
           </View>
           <History
-            player1={ { label: this.props.p1.label } }
-            player2={ { label: this.props.p2.label } }
-            history={ this.props.history }
+            player1={ { label: p1.label } }
+            player2={ { label: p2.label } }
+            history={ history }
           />
         </ScrollView>
         <Controls

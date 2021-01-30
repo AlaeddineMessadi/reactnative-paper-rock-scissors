@@ -25,7 +25,7 @@ const initState = {
 }
 
 const reducer = (state = initState, action) => {
-  let winner = null, score1 = null, score2 = null, weapon1 = null, weapon2 = null, mode = null;
+  let winner = null, score1 = null, score2 = null, weapon1 = null, weapon2 = null, mode = null, history ={};
   // console.log(state)
   switch (action.type) {
     case actions.SWITCH_MODE:
@@ -47,16 +47,16 @@ const reducer = (state = initState, action) => {
       };
 
     case actions.PICK_WEAPON:
-      let weapon1 = action.weapon || getRandomWeapon();
-      let weapon2 = getRandomWeapon();
-      let winner = chooseWinner(weapon1, weapon2, state.player1, state.player2);
-      let score1 = state.player1.score;
-      let score2 = state.player2.score;
+       weapon1 = action.weapon || getRandomWeapon();
+       weapon2 = getRandomWeapon();
+       winner = chooseWinner(weapon1, weapon2, state.player1, state.player2);
+       score1 = state.player1.score;
+       score2 = state.player2.score;
       // calculate score
       if (winner !== 'tie') {
         (winner === state.player1.label) ? score1++ : score2++;
       }
-      let history = state.history;
+       history = state.history;
       history.records.unshift({ player1: state.player1, player2: state.player2, winner })
       return {
         ...state,
