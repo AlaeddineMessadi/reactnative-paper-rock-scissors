@@ -20,7 +20,6 @@ const initState = {
   },
   winner: null,
   history: {
-    mode: initMode,
     records: []
   }
 }
@@ -42,6 +41,9 @@ const reducer = (state = initState, action) => {
           label: modes[mode].player2Label
         },
         mode,
+        history: {
+          records: []
+        }
       };
 
     case actions.PICK_WEAPON:
