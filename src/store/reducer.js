@@ -27,7 +27,7 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   let winner = null, score1 = null, score2 = null, weapon1 = null, weapon2 = null, mode = null;
-  console.log(state)
+  // console.log(state)
   switch (action.type) {
     case actions.SWITCH_MODE:
       mode = state.mode === initMode ? modeKeys[1] : modeKeys[0];

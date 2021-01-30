@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 const history = (props) => {
   const label1 = props.player1.label;
   const label2 = props.player2.label;
-  console.log(props.history)
+  // console.log(props.history)
   const records = props.history.records;
 
 
