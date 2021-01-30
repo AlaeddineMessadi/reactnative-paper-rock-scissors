@@ -1,0 +1,7 @@
+export const SWITCH_MODE = 'SWITCH_MODE';
+export const RESET_GAME = 'RESET_GAME';
+export const PICK_WEAPON = 'PICK_WEAPON';
+export const PUSH_RESULT_HISTORY = 'PUSH_RESULT_HISTORY';
+export const INIT_HISTORY = 'INIT_HISTORY';
+export const PICK_RANDOM_WEAPON = 'PICK_RANDOM_WEAPON';
+export const CHOOSE_WINNER = 'CHOOSE_WINNER';
