@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
@@ -9,19 +9,20 @@ import History from "../components/History";
 
 import Aux from '../hoc/Aux';
 
+import { modes } from '../constants/MODES'
 import * as actions from '../store/actions';
 
 // import classes from "./Game.css";
 
 class Game extends Component {
   render() {
-    const tie = this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null;
-
+    // const tie = this.props.winner === 'tie' ? <Text style={ styles.tie }>Tie!</Text> : null;
+    const tie = <Text style={ styles.tie }>Tie!</Text>;
     return (
       <Aux>
-        <Header mode={ this.props.mode }
+        <Header mode={ modes[this.props.mode].label.toUpperCase() }
           switchMode={ this.props.switchMode } />
-        { tie }
+
         <ScrollView contentContainerStyle={ styles.container }>
           <View style={ styles.gameContainer }>
             <Player
@@ -36,12 +37,12 @@ class Game extends Component {
               score={ this.props.p2.score }
               loading={ this.props.loading }
             />
+            { tie }
           </View>
           <History
-            player1={ { label: "Human" } }
-            player2={ { label: "Robot" } }
-            player1={ { label: "Human" } }
-            history={ { records: [{ player1: { weapon: "Rock" }, player2: { weapon: "Paper" }, winner: "Human" }, { player1: { weapon: "Rock" }, player2: { weapon: "Paper" }, winner: "Robot" }, { player1: { weapon: "Rock" }, player2: { weapon: "Paper" }, winner: "Human" }] } }
+            player1={ { label: this.props.p1.label } }
+            player2={ { label: this.props.p2.label } }
+            history={ this.props.history }
           />
         </ScrollView>
         <Controls
@@ -59,15 +60,15 @@ const mapStateToProps = state => {
     p2: state.player2,
     mode: state.mode,
     winner: state.winner,
+    history: state.history,
     tie: state.tie
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetGame: () => dispatch({ type: actions.RESET_GAME }),
     switchMode: () => dispatch({ type: actions.SWITCH_MODE }),
-    pickWeapon: () => dispatch({ type: actions.PICK_RANDOM_WEAPON })
+    pickWeapon: (weapon) => dispatch({ type: actions.PICK_WEAPON, weapon })
   }
 }
 
@@ -78,6 +79,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontWeight: "bold",
+    // width: 300,
+    position: 'absolute',
+    left: (Dimensions.get('window').width / 2) - 100,
+    padding: 100,
+    // top: "50%",
+    // left: 20,
+    // justifyContent: 'center',
+    // alignSelf: 'center',
   },
   container: {
     display: "flex",
