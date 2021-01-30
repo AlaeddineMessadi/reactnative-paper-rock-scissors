@@ -4,7 +4,8 @@ import { AsyncStorage } from "react-native";
 Reactotron
   .setAsyncStorageHandler(AsyncStorage) // AsyncStorage would either come from `react-native` or `@react-native-community/async-storage` depending on where you get it from
   .configure({
-    name: "Paper Rock Scissors"
+    name: "Paper Rock Scissors",
+    host: '192.168.0.84'
   }) // controls connection & communication settings
   .useReactNative({
         asyncStorage: false,
