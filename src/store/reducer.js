@@ -1,6 +1,5 @@
 import * as actions from './actions';
 import { modes, modeKeys } from '../constants/MODES';
-import { weapons, weaponKeys } from '../constants/WEAPONS';
 
 import { getRandomWeapon, chooseWinner } from './helpers';
 
