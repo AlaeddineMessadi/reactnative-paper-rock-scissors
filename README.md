@@ -2,6 +2,10 @@
 
 React Native App - Rock Paper Scissors
 
+## Contribution
+
+Feel free to contribute to this project
+
 ## Demo Link
 
 [Demo Link](https://expo.io/@_3ala_/projects/paper-rock-scissors)
